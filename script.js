@@ -24,6 +24,13 @@
 function compTurn() {
 let getComputerChoice = ["rock", "paper", "scissor"]
 let compChoice = getComputerChoice[Math.floor(Math.random() * getComputerChoice.length)];
-console.log(compChoice)
+return compChoice;
 }
-compTurn()
+console.log(compTurn());
+
+
+function userTurn(){
+    let playerChoice = prompt("Make a selection.");
+    console.log(playerChoice.toLowerCase())
+}
+userTurn()
