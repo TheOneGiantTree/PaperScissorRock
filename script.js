@@ -36,12 +36,12 @@
 // 
 
 const choices = ["rock", "paper", "scissors"];
-const compTurn = compChoice();
-const userTurn = userChoice();
-const winner = checkWin(userTurn, compTurn);
-console.log(userTurn)
-console.log(("Computer chooses: "+compTurn+". ")+
-    ("User chooses: "+userTurn+". ")+ winner)
+let user 
+let comp 
+let winner
+let userScore=0;
+let compScore=0;
+let result
 
 function userChoice(){
     let userPicks = prompt("rock, paper, or scissors?");
@@ -58,12 +58,12 @@ function userChoice(){
         userPicks = userPicks.toLowerCase();
         check = checkUserInput(userPicks);
     }
-    console.log(check)
-    return userPicks
+    // console.log(check)
+    return user = userPicks
 }
 
 function compChoice() {
-    return choices[Math.floor(Math.random() * choices.length)];
+    return comp = choices[Math.floor(Math.random() * choices.length)];
 }
 
 function checkWin(player, computer){
@@ -75,15 +75,66 @@ function checkWin(player, computer){
         (player == "paper" && computer == "rock") ||
         (player == "scissors" && computer == "paper")
         ) {
-        return 'User wins!';
+        return 'User';
      }
      else {
-        return 'Computer wins.';
+        return 'Computer';
      }
 }
+
 function checkUserInput(input){
-    return choices.includes(input)
+    return choices.includes(input);
 }
+
+function oneRound(){
+    const userTurn = userChoice();
+    const compTurn = compChoice();
+    const roundWin = checkWin(userTurn, compTurn);
+    // console.log(user, comp)
+    console.log(userTurn, compTurn, roundWin);
+    winner = roundWin;
+    getScore();
+    
+}
+
+function getScore(){
+ 
+    if(winner === 'Tie!'){
+    }
+    else if(winner === 'User'){
+         userScore = ++userScore;
+    }
+    else if(winner === 'Computer'){
+         compScore = ++compScore;
+    }
+    // console.log(winner)
+    console.log('User score: ' + userScore + ', ' + 'Computer score: ' + compScore)
+    return userScore, compScore
+}
+
+function victoryMessage(){
+    if(userScore === compScore){
+        result = 'Tie game.'
+    }
+    else if(userScore > compScore){
+        result = "You win!"
+    }
+    else{ result = 'Computer wins!'}
+    return result;
+}
+
+function fullGame(){
+    for(let i = 0; i < 5; i++){
+    oneRound();
+    }
+    victoryMessage();
+    console.log('Final score: '+'User score: ' + userScore + ', ' + 'Computer score: ' + compScore)
+    console.log(result)
+}
+
+fullGame();
+
+
 
 // ~~OLD CODE, SAVED FOR POSTERITY~~
 // // Computer's turn
@@ -124,6 +175,3 @@ function checkUserInput(input){
    
 //     oneRound();
 // }
-
-
-
